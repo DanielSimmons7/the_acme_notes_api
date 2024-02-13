@@ -26,7 +26,9 @@ const init = async()=> {
     DROP TABLE IF EXISTS notes;
     CREATE TABLE notes(
             id SERIAL PRIMARY KEY,
-            txt VARCHAR(255)
+            txt VARCHAR(100),
+            ranking INTEGER Default 5,
+            created_at TIMESTAMP DEFAULT now()
         );
     `;
     await client.query(SQL);
@@ -41,7 +43,7 @@ const init = async()=> {
     await client.query(SQL);
     console.log('data seeded');
     const port = process.env.PORT || 3000;
-    app.listen(port, ()=> console.log(`listening pon port ${port}`));
+    app.listen(port, ()=> console.log(`listening on port ${port}`));
     
 }
 
